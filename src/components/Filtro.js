@@ -1,67 +1,44 @@
-import styled from 'styled-components'
+
 import React from 'react'
 
-
-const Centering = styled.div`	
-	text-align: center;
-`
-
-export default class Filtro extends React.Component {
-    
-
-    onChangeInput = (event) => {
-        this.setState({novoValor: event.target.value})
-      }
-
-      onChangeFilter = (event) => {
-        this.setState({filtro: event.target.value})
-      }
+export class Filtro extends React.Component {
+  render() {
 
 
-
-
-
-    render() {
   return (
-    <div>
-      <Centering>
-      <h2>Filtros</h2>
-      <form>
-        <label>
+      < div >
+    <h2>Filtros</h2>
         Valor Mínimo:
-        <br/>
-        <input   
-     value={this.state.novoValor}
-     onChange={this.onChangeFilter}
-     placeholder={"0..."}
-/>
-    <br/>
-        <br/>
-        </label>
-        <label>
+        <br />
+        <input
+        type="number"
+          value={this.props.minimo}
+          onChange={this.props.onChangeMinimo}
+          placeholder={"0..."}
+        />
+        <br />
+        <br />
         Valor Máximo:
-        <br/>
-        <input   
-     value={this.state.novoValor}
-     onChange={this.onChangeFilter}
-     placeholder={"1000..."}
-/>
-        </label>
-        <br/>
-        <br/>
-        <label>
+        <br />
+        <input
+        type="number"
+          value={this.props.maximo}
+          onChange={this.props.onChangeMaximo}
+          placeholder={"1000..."}
+        />
+        <br />
+        <br />
         Busca por nome:
-        <br/>
-        <input   
-     value={this.state.novoValor}
-     onChange={this.onChangeFilter}
-     placeholder={"Digite o produto..."}
-/>
-         </label>
-</form>  
-</Centering>    
-    </div>
-  );
-}
+        <br />
+        <input
+          value={this.props.busca}
+          onChange={this.props.onChangeBusca}
+          placeholder={"Digite o produto..."}
+        />
+      {this.props.sortProduto} 
+    
+      </div >
+  )}
 }
 
+export default Filtro;
