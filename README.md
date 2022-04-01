@@ -1,6 +1,6 @@
 # Projeto de Fixação: Labe E-Commerce
 
-<strong><em>LINK DO SURGE: COLOCAR LINK DO SURGE AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</em></strong>
+<strong><em>LINK DO SURGE: https://silent-planes.surge.sh/!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</em></strong>
 
 Esse site foi desenvolvido por <em> Christian Cardeal de Miranda Penna Botto</em>, <em>Karen Naomi Cardoso Kubo <e/m> e <em>Mariana Mendes</em>.
 
