@@ -25,3 +25,4 @@ Já <strong>body</strong> é composto de três seções:
 Deve se notar também que o site conta com <strong><em>local storage</em></strong>. Então caso o usuário saia da página e a recarregue, seu carrinho continuará salvo.
 
 <strong><em>COLOCAR IMAGENS DO SITE AQUI !!!!!!!!!!!!!!</em></strong>
+![Captura de tela 2022-04-01 204321](https://user-images.githubusercontent.com/98923335/161354854-5a9bfb1e-c83b-4a7a-89e6-29736bff5fd4.png)
