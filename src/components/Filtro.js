@@ -1,5 +1,11 @@
 
 import React from 'react'
+import styled from 'styled-components'
+
+const Input = styled.input`
+width: 15vw;
+`
+
 
 export class Filtro extends React.Component {
   render() {
@@ -10,7 +16,7 @@ export class Filtro extends React.Component {
     <h2>Filtros</h2>
         Valor Mínimo:
         <br />
-        <input
+        <Input
         type="number"
           value={this.props.minimo}
           onChange={this.props.onChangeMinimo}
@@ -20,7 +26,7 @@ export class Filtro extends React.Component {
         <br />
         Valor Máximo:
         <br />
-        <input
+        <Input
         type="number"
           value={this.props.maximo}
           onChange={this.props.onChangeMaximo}
@@ -30,7 +36,7 @@ export class Filtro extends React.Component {
         <br />
         Busca por nome:
         <br />
-        <input
+        <Input
           value={this.props.busca}
           onChange={this.props.onChangeBusca}
           placeholder={"Digite o produto..."}
