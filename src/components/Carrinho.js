@@ -19,7 +19,7 @@ export default class Carrinho extends React.Component {
 
                     {this.props.mapdositens}
 
-                    <p>Valor: R$</p>
+                    <p>Valor: R$ {this.props.compraTotal}</p>
                 </ContainerCard>
             
         )

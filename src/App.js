@@ -80,53 +80,63 @@ export class App extends React.Component {
         name: "Cachorro",
         value: 500.00,
         imageUrl: "https://picsum.photos/200",
+        quantidade: ''
       },
       {
         id: 2,
         name: "Maçã",
         value: 100.00,
         imageUrl: "https://picsum.photos/201",
+        quantidade: ''
       },
       {
         id: 3,
         name: "Chocolate",
         value: 400.00,
         imageUrl: "https://picsum.photos/199",
+        quantidade: ''
       },
       {
         id: 4,
         name: "Bicicleta",
         value: 600.00,
         imageUrl: "https://picsum.photos/202",
+        quantidade: ''
       },
       {
         id: 5,
         name: "Lasanha",
         value: 180.00,
         imageUrl: "https://picsum.photos/198",
+        quantidade: ''
       },
       {
         id: 6,
         name: "Video Game",
         value: 80.00,
         imageUrl: "https://picsum.photos/197",
+        quantidade: ''
       },
       {
         id: 7,
         name: "Celular",
         value: 50.00,
         imageUrl: "https://picsum.photos/203",
+        quantidade: ''
       },
       {
         id: 8,
         name: "Praia",
         value: 90.00,
         imageUrl: "https://picsum.photos/204",
-      },
+        quantidade: ''
+      }
     ],
     valorCompra: '',
     order: '',
     carrinho: [],
+    
+
   }
   // ESTADOS FIM
 
@@ -161,34 +171,47 @@ export class App extends React.Component {
   }
 
   adicionarCarrinho = (produ) => {
-
-    const itensCarrinho = this.state.produto.filter((prod) => {
+ 
+    const itensCarrinho = this.state.carrinho.filter((prod) => {
       if (prod.id === produ.id) {
         return prod;
       } else {
         return false;
-      }
+      }      
     })
-    const novoCarrinho = [produ, ... this.state.carrinho]
 
-    this.setState({ carrinho: novoCarrinho })
-
-    let quantidade = 0;
     if (itensCarrinho.length === 0) {
-      quantidade++;
+      produ.quantidade = 1
+      const novoCarrinho = [ ...this.state.carrinho, produ]
+      this.setState({
+        carrinho: novoCarrinho
+      })
+    } else {
+      const novoCarrinho = this.state.carrinho.map((prod) => {
+        if (produ.id === prod.id) {
+          return {...prod, quantidade: prod.quantidade + 1}
+        } else {
+          return prod
+        }
+      })
+
+      this.setState({
+        carrinho: novoCarrinho
+      })
     }
-
+    console.log(this.state.carrinho)
   }
+  
 
-  contarIndex = (id) => {
-    let count = 0;
-    this.state.carrinho.forEach (elemento => {
-      if (elemento.id === id) {
-        count += 1;
-      }
-    })
-    return count;
-  }
+  // contarIndex = (id) => {
+  //   let count = 0;
+  //   this.state.carrinho.forEach (item => {
+  //     if (item.id === id) {
+  //       count += 1;
+  //     }
+  //   })
+  //   return count;
+  // }
 
   // FUNÇÕES CARRINHO FIM
 
@@ -197,9 +220,9 @@ export class App extends React.Component {
     const mapdositens = this.state.carrinho.map((item) => {
       return (
 
-        <DivDoMap>
+        <DivDoMap key={item.id}>
           <Valores>
-            <p>{this.contarIndex}</p>
+            <p>{item.quantidade}x</p>
           </Valores>
           <Valores>
             <p>{item.name}</p>
@@ -246,8 +269,8 @@ export class App extends React.Component {
       <>
         <GlobalStyle />
         <MainContainer>
-          {/* <ContainerFiltro> */}
-          {/* 
+          <ContainerFiltro> 
+          
           <Filtro
             minimo={this.state.minimo}
             maximo={this.state.maximo}
@@ -257,9 +280,8 @@ export class App extends React.Component {
             onChangeBusca={this.onChangeBusca}
             produto={this.state.produto}
             listaDeProdutos={this.listaDeProdutos}
-
-          /> */}
-          {/* </ContainerFiltro> */}
+          />
+          </ContainerFiltro>
 
           <Produto>
 
@@ -289,6 +311,7 @@ export class App extends React.Component {
 
           <Carrinho
             mapdositens={mapdositens}
+            compraTotal = {this.state.valorCompra}
           />
 
         </MainContainer>
