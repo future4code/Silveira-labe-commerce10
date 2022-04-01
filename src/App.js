@@ -3,6 +3,10 @@ import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import Filtro from './components/Filtro'
 import Carrinho from './components/Carrinho'
+import Header from './components/header'
+import Footer from './components/footer'
+import Logo from './img/logo.png'
+import Email from './img/o-email.png'
 
 const GlobalStyle = createGlobalStyle`
    box-sizing: border-box;
@@ -16,12 +20,10 @@ const MainContainer = styled.div`
 `
 
 const ContainerFiltro = styled.div`
-    width: 15vw;
-    height:100vh; 
-    border: 2px solid;
-    background-image: linear-gradient(120deg, #efd3e9 0%, #ca6db0 100%);
-    margin: auto;
-    padding: 10px;    
+    width: 20vw;
+    min-height: 100vh;
+    border: 2px ridge;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);    
     align-items: center;
     text-align: center;
     
@@ -43,11 +45,12 @@ const ListaProdutos = styled.div`
 const Itens = styled.div`
     margin: 10px;
     justify-content: center;
-    border: 3px solid pink;
+    border: 3px solid lightblue;
         display: flex;
         flex-direction: column;
         img{ 
-            width: 5vw;
+            justify-self: center;
+            width: 16vw;
         }
 `
 
@@ -55,9 +58,6 @@ const Span = styled.span`
     text-align: center;
 `
 
-const ContainerCarrinho = styled.div`
-
-`
 
 const Valores = styled.div`
 
@@ -77,14 +77,14 @@ export class App extends React.Component {
     produto: [
       {
         id: 1,
-        name: "Cachorro",
+        name: "Garrafa",
         value: 500.00,
         imageUrl: "https://picsum.photos/200",
         quantidade: ''
       },
       {
         id: 2,
-        name: "Maçã",
+        name: "Mochila",
         value: 100.00,
         imageUrl: "https://picsum.photos/201",
         quantidade: ''
@@ -105,7 +105,7 @@ export class App extends React.Component {
       },
       {
         id: 5,
-        name: "Lasanha",
+        name: "Monitor LED",
         value: 180.00,
         imageUrl: "https://picsum.photos/198",
         quantidade: ''
@@ -126,7 +126,7 @@ export class App extends React.Component {
       },
       {
         id: 8,
-        name: "Praia",
+        name: "Tenis",
         value: 90.00,
         imageUrl: "https://picsum.photos/204",
         quantidade: ''
@@ -140,6 +140,19 @@ export class App extends React.Component {
   }
   // ESTADOS FIM
 
+  // LOCAL STORAGE INÍCIO
+  componentDidUpdate() {
+    localStorage.setItem("cart", JSON.stringify(this.state.carrinho) )
+  };
+
+  componentDidMount() {
+    const cartString = localStorage.getItem("cart")
+    if (cartString) {
+      const cartObj = JSON.parse(cartString) 
+      this.setState({carrinho: cartObj})
+      }
+  };
+  // LOCAL STORAGE FIM
 
   // FUNÇÕES FILTRO INÍCIO  
   onChangeMinimo = (event) => {
@@ -164,10 +177,21 @@ export class App extends React.Component {
 
   // FUNÇÕES CARRINHO INÍCIO
   removeOnclick = (produtoRemover) => {
-    const novaListaCarrinho = this.state.carrinho.filter((produto) => {
-      return produto.id !== produtoRemover.id
-    })
-    this.setState({ carrinho: novaListaCarrinho })
+    if (produtoRemover.quantidade <= 1) {
+      const novaListaCarrinho = this.state.carrinho.filter((produto) => {
+        return produto.id !== produtoRemover.id
+      })
+      this.setState({ carrinho: novaListaCarrinho })
+    } else {
+      const novaListaCarrinho = this.state.carrinho.map((produto) => {
+        if (produto.id === produtoRemover.id) {
+          return {...produto, quantidade:produto.quantidade-1}
+        }
+        return produto
+      })
+      this.setState({ carrinho: novaListaCarrinho })
+    }  
+    
   }
 
   adicionarCarrinho = (produ) => {
@@ -203,16 +227,6 @@ export class App extends React.Component {
   }
   
 
-  // contarIndex = (id) => {
-  //   let count = 0;
-  //   this.state.carrinho.forEach (item => {
-  //     if (item.id === id) {
-  //       count += 1;
-  //     }
-  //   })
-  //   return count;
-  // }
-
   // FUNÇÕES CARRINHO FIM
 
   render() {
@@ -228,7 +242,10 @@ export class App extends React.Component {
             <p>{item.name}</p>
           </Valores>
           <Valores>
-            <button onClick={this.removeOnclick}>Remover</button>
+            <p> R$: {item.value*item.quantidade}</p>
+          </Valores>
+          <Valores>
+            <button onClick={() => this.removeOnclick(item)}>Remover</button>
           </Valores>
         </DivDoMap>
 
@@ -260,7 +277,7 @@ export class App extends React.Component {
               <img src={produto.imageUrl} alt="imagem" />
               <Span><strong>{produto.name}</strong></Span>
               <Span>R$ {produto.value}</Span>
-              <button onClick={this.adicionarCarrinho}>Adicionar ao carrinho</button>
+              <button onClick={() => this.adicionarCarrinho(produto)}>Adicionar ao carrinho</button>
             </Itens>
           )
         })
@@ -268,6 +285,9 @@ export class App extends React.Component {
     return (
       <>
         <GlobalStyle />
+        <Header
+        imagem= {Logo}
+        />
         <MainContainer>
           <ContainerFiltro> 
           
@@ -311,10 +331,14 @@ export class App extends React.Component {
 
           <Carrinho
             mapdositens={mapdositens}
-            compraTotal = {this.state.valorCompra}
+            carrinho = {this.state.carrinho}
           />
 
         </MainContainer>
+        
+        <Footer
+        mail={Email}
+        />
       </>
     )
   }
