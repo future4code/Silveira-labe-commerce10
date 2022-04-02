@@ -1,6 +1,6 @@
 # Projeto de Fixação: Labe E-Commerce
 
-<strong><em>LINK DO SURGE: [Lab E-Commerce](https://drab-effect.surge.sh/)</em></strong>
+<strong><em>LINK DO SURGE: [Labe E-Commerce](https://drab-effect.surge.sh/)</em></strong>
 
 Esse site foi desenvolvido por <em> Christian Cardeal de Miranda Penna Botto</em>, <em>Karen Naomi Cardoso Kubo </em> e <em>Mariana Mendes</em>.
 
