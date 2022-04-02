@@ -22,6 +22,6 @@ Já <strong>body</strong> é composto de três seções:
 
 <li>Por fim, a última seção é o <strong><em>carrinho</em></strong>. Nele, os produtos que foram adicionados aparecerão com suas respectivas <strong><em>quantidades</em></strong>. Além disso, um <strong><em>subtotal para cada produto</em></strong> também aparecerá (ou seja, o valor do produto multiplicado pela quantidade de produtos). Por fim, o <strong><em>valor total da compra</em></strong> também aparece.<li>
 
-Deve se notar também que o site conta com <strong><em>local storage</em></strong>. Então caso o usuário saia da página e a recarregue, seu carrinho continuará salvo.
+Deve-se notar também que o site conta com <strong><em>local storage</em></strong>. Então caso o usuário saia da página e a recarregue, seu carrinho continuará salvo.
 
 ![Captura de tela 2022-04-01 204321](https://user-images.githubusercontent.com/98923335/161354854-5a9bfb1e-c83b-4a7a-89e6-29736bff5fd4.png)
