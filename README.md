@@ -2,7 +2,7 @@
 
 <strong><em>LINK DO SURGE: [Lab E-Commerce](https://drab-effect.surge.sh/)</em></strong>
 
-Esse site foi desenvolvido por <em> Christian Cardeal de Miranda Penna Botto</em>, <em>Karen Naomi Cardoso Kubo <e/m> e <em>Mariana Mendes</em>.
+Esse site foi desenvolvido por <em> Christian Cardeal de Miranda Penna Botto</em>, <em>Karen Naomi Cardoso Kubo </em> e <em>Mariana Mendes</em>.
 
 Ele é um projeto de criação de uma página de  <strong>Labe-Commerce</strong>.
 
